@@ -1,3 +1,6 @@
+# This is LocalConfig file, containing system-specific paths and settings
+# Carefully check correctness of every path, that the file or directory exist and correct
+
 CERTCFG := $(wildcard $(PATH_ROOT)/Certificates.kmk)
 include $(CERTCFG)
 
@@ -29,8 +32,8 @@ VBOX_WITH_DOCS :=
 VBOX_WITH_DOCS_CHM := 
 VBOX_WITH_DOCS_PACKING :=
 VBOX_HAVE_XMLLINT := C:\bin\xmllint\bin\xmllint.exe
-VBOX_PATH_DOCBOOK        := C:/bin/DocBook/xsl/
-VBOX_PATH_DOCBOOK_DTD    := C:/bin/DocBook/xml/
+VBOX_PATH_DOCBOOK := C:/bin/DocBook/xsl/
+VBOX_PATH_DOCBOOK_DTD := C:/bin/DocBook/xml/
 VBOX_PATH_HTML_HELP_WORKSHOP := "C:\Program Files (x86)\HTML Help Workshop"
 VBOX_PDFLATEX := "C:/bin/miktex/texmfs/install/miktex/bin/pdflatex.exe"
 VBOX_PDFLATEX_CMD := $(VBOX_PDFLATEX) -halt-on-error -interaction batchmode
