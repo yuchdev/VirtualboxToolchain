@@ -41,6 +41,9 @@ if ERRORLEVEL 1 exit /b 1
 call loadall.cmd
 if ERRORLEVEL 1 exit /b 1
 
-del /q AutoConfig.kmk configure.log env.bat 2>nul
-
 start VirtualBox.exe
+
+REM Back to root directory
+cd ..\..\..\..\
+
+del /q AutoConfig.kmk configure.log env.bat
