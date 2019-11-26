@@ -1,8 +1,8 @@
 # This is LocalConfig file, containing system-specific paths and settings
 # Carefully check correctness of every path, that the file or directory exist and correct
 
-VBOX_CERTIFICATE_FINGERPRINT := 0523C6E67394C400C34A8B86A6A356AA04D683D5
-VBOX_CERTIFICATE_SHA2_FINGERPRINT := E074D361409C539791522724C524BD7B7169B186
+CERTCFG := $(wildcard $(PATH_ROOT)/Certificates.kmk)
+include $(CERTCFG)
 
 VBOX_WITH_HARDENING :=
 VBOX_PATH_WIX := C:\bin\wix
