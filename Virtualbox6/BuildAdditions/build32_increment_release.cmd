@@ -39,8 +39,5 @@ if ERRORLEVEL 1 exit /b 1
 kmk additions-packing
 if ERRORLEVEL 1 exit /b 1
 
-REM Back to root directory
-cd ..\..\..\..\
-
 del /q AutoConfig.kmk configure.log env.bat
 
