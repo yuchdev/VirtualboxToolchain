@@ -20,7 +20,7 @@ if ERRORLEVEL 1 exit /b 1
 
 set BUILD_TARGET_ARCH=amd64
 set PATH=%PATH%;%~dp0kBuild\bin\win.amd64
-cscript configure.vbs --with-DDK=C:\WinDDK\7600.16385.1 --with-MinGW-w64=C:\lib\mingw\mingw64 --with-MinGW32=C:\lib\mingw\mingw32 --with-libSDL=C:\lib\SDL\x64\SDL-1.2.15 --with-openssl=C:\lib\OpenSSL\x64 --with-openssl32=C:\lib\OpenSSL\x32 --with-libcurl=C:\lib\curl\x64 --with-libcurl32=C:\lib\curl\x86 --with-Qt5=C:\Qt\5.6.3\x64\msvc2010 --with-libvpx=C:\lib\libvpx --with-libopus=C:\lib\libopus --with-python=C:/Python27
+cscript configure.vbs --with-DDK=C:\WinDDK\7600.16385.1 --with-MinGW-w64=C:\lib\mingw\mingw64 --with-MinGW32=C:\lib\mingw\mingw32 --with-libSDL=C:\lib\SDL\x64\SDL-1.2.15 --with-openssl=C:\lib\OpenSSL\x64 --with-openssl32=C:\lib\OpenSSL\x86 --with-libcurl=C:\lib\curl\x64 --with-libcurl32=C:\lib\curl\x86 --with-Qt5=C:\Qt\5.6.3\msvc2010_64 --with-libvpx=C:\lib\libvpx --with-libopus=C:\lib\libopus --with-python=C:/Python27
 if ERRORLEVEL 1 exit /b 1
 
 call env.bat
@@ -40,9 +40,4 @@ if ERRORLEVEL 1 exit /b 1
 call loadall.cmd
 if ERRORLEVEL 1 exit /b 1
 
-start VirtualBox.exe
-
-REM Back to root directory
-cd ..\..\..\..\
-
-del /q AutoConfig.kmk configure.log env.bat
+del /q AutoConfig.kmk configure.log env.bat 2>nul
