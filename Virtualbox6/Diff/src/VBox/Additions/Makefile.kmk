@@ -22,7 +22,6 @@ include $(KBUILD_PATH)/subheader.kmk
 # Globals
 #
 VBOX_PATH_ADDITIONS_SRC := $(PATH_SUB_CURRENT)
-VBOX_ADDITIONS_WINDOWS_ONLY := 1
 
 #
 # Cross building of the additions is generally done by remote building

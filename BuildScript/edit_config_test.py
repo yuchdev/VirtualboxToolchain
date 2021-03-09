@@ -1,5 +1,8 @@
 import os
+import shutil
+import stat
 import unittest
+from log_helper import logger
 from edit_config import search_replace, replace_infile
 
 
@@ -23,21 +26,39 @@ and more recently with desktop publishing software like Aldus PageMaker includin
 
 class TestSearchReplace(unittest.TestCase):
 
+    OLD_TEXT = "Lorem Ipsum"
+    NEW_TEXT = "Dolor Sit Amet"
+
     def test_replace_string(self):
         """
         Test search and replace in string
         """
-        old_text = "Lorem Ipsum"
-        new_text = "Dolor Sit Amet"
-        new_content = search_replace(OLD_CONTENT, old_text, new_text)
+        new_content, num_occurrences = search_replace(OLD_CONTENT,
+                                                      TestSearchReplace.OLD_TEXT,
+                                                      TestSearchReplace.NEW_TEXT)
         self.assertEqual(NEW_CONTENT, new_content)
 
     def test_replace_file(self):
         """
         Test search and replace in file
         """
-        lorem_ipsum_file = os.abs
-        replace_infile()
+        lorem_ipsum = os.path.join(os.path.dirname(os.path.realpath(__file__)), "lorem_ipsum.txt")
+        lorem_ipsum_copy = os.path.join(os.path.dirname(os.path.realpath(__file__)), "lorem_ipsum.copy.txt")
+        dolor_sit = os.path.join(os.path.dirname(os.path.realpath(__file__)), "dolor_sit.txt")
+        shutil.copyfile(lorem_ipsum, lorem_ipsum_copy)
+        self.assertTrue(os.path.isfile(lorem_ipsum))
+        self.assertTrue(os.path.isfile(lorem_ipsum_copy))
+        self.assertTrue(os.path.isfile(dolor_sit))
+        replace_infile(lorem_ipsum_copy, TestSearchReplace.OLD_TEXT, TestSearchReplace.NEW_TEXT)
+
+        with open(lorem_ipsum_copy, 'r') as lorem_ipsum_file:
+            lorem_ipsum_content = lorem_ipsum_file.read()
+
+        with open(dolor_sit, 'r') as dolor_sit_file:
+            dolor_sit_content = dolor_sit_file.read()
+
+        self.assertEqual(lorem_ipsum_content, dolor_sit_content)
+        os.unlink(lorem_ipsum_copy)
 
 
 if __name__ == "__main__":
