@@ -1,6 +1,17 @@
 from replace_pair import ReplacePair
 from replace_content_tabs import REPLACE_CONTENT_TABS
 
+
+__doc__ = """DO NOT REFORMAT THIS FILE
+It is beinng merged below with REPLACE_CONTENT_TABS dict (see replace_content_tabs.py), 
+which is formatted with tabs instead of spaces, to perform search-replace algorithm 
+in tabs-formatted Virtualbox config files.
+However, most of Virtualbox config files were formatted with spaces.
+Do not change any formatting or layout of text within the patterns, 
+because it would affect search-replace algorithm.
+"""
+
+
 REPLACE_CONTENT = {
 
     r"configure.vbs": [
