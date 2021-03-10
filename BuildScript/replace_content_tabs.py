@@ -15,6 +15,54 @@ because it would affect search-replace algorithm.
 
 REPLACE_CONTENT_TABS = {
 
+	r"Makefile.kmk": [
+		ReplacePair(
+			old_text=r'''additions-build: \
+	additions-build-rsync-into-vms \
+	additions-build-win.x86 \
+	additions-build-win.amd64 \
+	additions-build-solaris.amd64 \
+	additions-build-solaris.x86 \
+	additions-build-os2.x86 \
+	additions-build-linux \
+	additions-build-darwin.x86 \
+	additions-build-darwin.amd64''',
+			new_text=r'''ifdef VBOX_ADDITIONS_WINDOWS_ONLY
+
+additions-build: \
+	additions-build-win.x86 \
+	additions-build-win.amd64
+	
+else
+
+additions-build: \
+	additions-build-rsync-into-vms \
+	additions-build-win.x86 \
+	additions-build-win.amd64 \
+	additions-build-solaris.amd64 \
+	additions-build-solaris.x86 \
+	additions-build-os2.x86 \
+	additions-build-linux \
+	additions-build-darwin.x86 \
+	additions-build-darwin.amd64
+	
+endif'''
+	),
+
+		ReplacePair(
+			old_text=r'''VBoxRT-x86_LIBS.win                = \
+	$(PATH_SDK_$(VBOX_WINDDK)_LIB.x86)/vccomsup.lib \
+	$(PATH_SDK_$(VBOX_WINDDK)_LIB.x86)/wbemuuid.lib \
+	$(PATH_TOOL_$(VBOX_VCC_TOOL_STEM)X86_LIB)/delayimp.lib''',
+			new_text=r'''VBoxRT-x86_LIBS.win                = \
+	$(PATH_SDK_$(VBOX_WINDDK)_LIB.x86)/vccomsup.lib \
+	$(PATH_SDK_$(VBOX_WINDDK)_LIB.x86)/wbemuuid.lib \
+	$(PATH_TOOL_$(VBOX_VCC_TOOL_STEM)X86_LIB)/delayimp.lib \
+	$(PATH_SDK_$(VBOX_WINPSDK)_LIB.x86)/crypt32.lib \
+	$(PATH_SDK_$(VBOX_WINPSDK)_LIB.x86)/bcrypt.lib'''
+		)
+	],
+
 	r"src\VBox\Runtime\Makefile.kmk": [
 		ReplacePair(
 			old_text=r'''VBoxRT_LIBS.win                = \
