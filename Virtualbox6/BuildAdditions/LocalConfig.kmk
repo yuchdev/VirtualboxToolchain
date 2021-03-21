@@ -1,8 +1,7 @@
 # This is LocalConfig file, containing system-specific paths and settings
 # Carefully check correctness of every path, that the file or directory exist and correct
 
-CERTCFG := $(wildcard $(PATH_ROOT)/Certificates.kmk)
-include $(CERTCFG)
+include $(PATH_SUB_CURRENT)/Certificates.kmk
 
 VBOX_WITH_HARDENING :=
 VBOX_PATH_WIX := C:\bin\wix
@@ -11,6 +10,8 @@ VBOX_PATH_GSOAP := C:/bin/gsoap/gsoap-2.8/gsoap
 VBOX_PATH_NSIS := C:/bin/nsis/nsis-2.51
 VBOX_MKISOFS := C:/bin/cdrtools/win32/mkisofs.exe
 VBOX_ZIP := "C:/bin/zip/bin/zip.exe"
+PATH_TOOL_NASM=C:/bin/nasm
+VBOX_PATH_AUTOIT3 := C:/bin/autoit3
 VBOX_PATH_DIFX := C:\WinDDK\7600.16385.1\redist\DIFx\DIFxAPI\amd64
 VBOX_WITH_COMBINED_PACKAGE := 1
 VBOX_WITH_QT_PAYLOAD := 1
@@ -28,6 +29,7 @@ VBOX_PATH_SIGN_TOOLS := C:\WinSDK\8.1\bin\x64
 VBOX_PATH_SELFSIGN := C:\WinDDK\7600.16385.1\bin\selfsign
 VBOX_PATH_WISUMINFO := "C:\Program Files\Microsoft SDKs\Windows\v7.1\Samples\sysmgmt\msi\scripts\WiSumInf.vbs"
 VBOX_PATH_WISUBSTG  := "C:\Program Files\Microsoft SDKs\Windows\v7.1\Samples\sysmgmt\msi\scripts\WiSubStg.vbs"
+
 VBOX_WITH_DOCS :=
 VBOX_WITH_DOCS_CHM :=
 VBOX_WITH_DOCS_PACKING :=
@@ -43,7 +45,8 @@ PATH_SDK_WINDDK80 := C:/WinDDK/8.0
 PATH_TOOL_VCC120AMD64 := C:/MSVS/12.0/VC
 PATH_TOOL_VCC120X86 := C:/MSVS/12.0/VC
 VBOX_INSTALLER_LANGUAGES := en_US
-VBOX_PATH_AUTOIT3 := C:/bin/autoit3
+
+VBOX_GSOAP_INSTALLED := 1
 VBOX_WITH_TESTCASES :=
 VBOX_WITH_VALIDATIONKIT :=
 VBOX_WITH_VBOX_IMG := 1

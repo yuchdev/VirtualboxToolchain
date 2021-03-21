@@ -19,7 +19,7 @@ call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.Cmd" /Release /x64
 if ERRORLEVEL 1 exit /b 1
 
 set BUILD_TARGET_ARCH=amd64
-cscript configure.vbs --with-DDK=C:\WinDDK\7600.16385.1 --with-MinGW-w64=C:\lib\mingw\mingw64 --with-MinGW32=C:\lib\mingw\mingw32 --with-libSDL=C:\lib\SDL\x64\SDL-1.2.15 --with-openssl=C:\lib\OpenSSL\x64 --with-openssl32=C:\lib\OpenSSL\x86 --with-libcurl=C:\lib\curl\x64 --with-libcurl32=C:\lib\curl\x86 --with-Qt5=C:\Qt\5.6.3\x64\msvc2010 --with-libvpx=C:\lib\libvpx --with-libopus=C:\lib\libopus --with-python=C:/Python27
+cscript configure.vbs --with-DDK=C:\WinDDK\7600.16385.1 --with-MinGW-w64=C:\lib\mingw\mingw64 --with-MinGW32=C:\lib\mingw\mingw32 --with-libSDL=C:\lib\SDL\x64\SDL-1.2.15 --with-openssl=C:\lib\OpenSSL\x64 --with-openssl32=C:\lib\OpenSSL\x86 --with-libcurl=C:\lib\curl\x64 --with-libcurl32=C:\lib\curl\x86 --with-Qt5=C:\Qt\5.6.3\msvc2010_64 --with-libvpx=C:\lib\libvpx --with-libopus=C:\lib\libopus --with-python=C:/Python27
 
 if ERRORLEVEL 1 exit /b 1
 
@@ -35,5 +35,9 @@ if ERRORLEVEL 1 exit /b 1
 kmk additions-packing
 if ERRORLEVEL 1 exit /b 1
 
-del /q AutoConfig.kmk configure.log env.bat
+REM Signal about build completion
+for /L %i in (1,1,3) do (
+  echo ^G
+)
 
+del /q AutoConfig.kmk configure.log env.bat
