@@ -54,4 +54,4 @@ class LogHelper:
         self.logger.debug(message)
 
 
-logger = LogHelper("ip_check", logging.DEBUG, True)
+logger = LogHelper("build_virtualbox", logging.INFO, True)
