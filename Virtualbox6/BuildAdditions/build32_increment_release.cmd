@@ -23,7 +23,7 @@ if ERRORLEVEL 1 exit /b 1
 set BUILD_TARGET_ARCH=x86
 set PATH=%PATH%;%~dp0kBuild\bin\win.x86
 
-cscript configure.vbs --with-DDK=C:\WinDDK\7600.16385.1 --with-MinGW-w64=C:\lib\mingw\mingw64 --with-MinGW32=C:\lib\mingw\mingw32 --with-libSDL=C:\lib\SDL\x64\SDL-1.2.15 --with-openssl=C:\lib\OpenSSL\x64 --with-openssl32=C:\lib\OpenSSL\x32 --with-libcurl=C:\lib\curl\x64 --with-libcurl32=C:\lib\curl\x86 --with-Qt5=C:\Qt\5.6.3\x64\msvc2010 --with-libvpx=C:\lib\libvpx --with-libopus=C:\lib\libopus --with-python=C:/Python27
+cscript configure.vbs --target-arch=x86 --with-vc="C:\MSVS\10.0\VC" --with-DDK=C:\WinDDK\7600.16385.1 --with-w32api=c:\lib\mingw\mingw32 --with-MinGW-w64=C:\lib\mingw\mingw64 --with-MinGW32=C:\lib\mingw\mingw32 --with-libSDL=C:\lib\SDL\x86\SDL-1.2.15 --with-openssl=C:\lib\OpenSSL\x32 --with-libcurl=C:\lib\curl\x86 --with-Qt5=C:\Qt\5.6.3\msvc2010 --with-libvpx=C:\lib\libvpx --with-libopus=C:\lib\libopus --with-python=C:/Python27
 if ERRORLEVEL 1 exit /b 1
 
 call env.bat
@@ -32,7 +32,10 @@ if ERRORLEVEL 1 exit /b 1
 REM Commands for verbose output
 REM kmk --pretty-command-printing --jobs=1
 REM kmk --debug=vjm KBUILD_TYPE=debug
+kmk
 kmk additions-build
+kmk additions-packing
+
 if ERRORLEVEL 1 exit /b 1
 
 kmk additions-packing

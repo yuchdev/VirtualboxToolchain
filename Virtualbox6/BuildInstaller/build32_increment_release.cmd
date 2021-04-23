@@ -1,5 +1,7 @@
 @echo off
 
+title build Virtualbox Additions x86
+
 cd /d %~dp0
 for /f "tokens=3" %%i in ('findstr /B /R /C:"VBOX_VERSION_MAJOR *=" Version.kmk') do SET VBOX_VER_MJ=%%i
 for /f "tokens=3" %%i in ('findstr /B /R /C:"VBOX_VERSION_MINOR *=" Version.kmk') do SET VBOX_VER_MN=%%i
@@ -13,14 +15,19 @@ set VBOX_VER_MN=
 set VBOX_VER_BLD=
 set VBOX_VER_PUB=
 
-echo "ADDITIONS CONFIGURATION"
+echo "INSTALLER CONFIGURATION"
 
-call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.Cmd" /Release /x64 /win7
+call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.Cmd" /Release /x86 /win7
+REM TODO: try it also
+REM call C:\MSVS\10.0\VC\bin\vcvars32.bat
+
 if ERRORLEVEL 1 exit /b 1
 
-set BUILD_TARGET_ARCH=amd64
-cscript configure.vbs --with-DDK=C:\WinDDK\7600.16385.1 --with-MinGW-w64=C:\lib\mingw\mingw64 --with-MinGW32=C:\lib\mingw\mingw32 --with-libSDL=C:\lib\SDL\x64\SDL-1.2.15 --with-openssl=C:\lib\OpenSSL\x64 --with-openssl32=C:\lib\OpenSSL\x86 --with-libcurl=C:\lib\curl\x64 --with-libcurl32=C:\lib\curl\x86 --with-Qt5=C:\Qt\5.6.3\msvc2010_64 --with-libvpx=C:\lib\libvpx --with-libopus=C:\lib\libopus --with-python=C:/Python27
+set KBUILD_TARGET_ARCH=x86
+set BUILD_TARGET_ARCH=x86
+set PATH=%PATH%;%~dp0kBuild\bin\win.x86;%~dp0tools\win.x86\bin;C:\lib\mingw\mingw32\bin;C:\Python27
 
+cscript configure.vbs --target-arch=x86 --with-vc="C:\MSVS\10.0\VC" --with-DDK=C:\WinDDK\7600.16385.1 --with-w32api=c:\lib\mingw\mingw32 --with-MinGW-w64=C:\lib\mingw\mingw64 --with-MinGW32=C:\lib\mingw\mingw32 --with-libSDL=C:\lib\SDL\x86\SDL-1.2.15 --with-openssl=C:\lib\OpenSSL\x32 --with-libcurl=C:\lib\curl\x86 --with-Qt5=C:\Qt\5.6.3\msvc2010 --with-libvpx=C:\lib\libvpx --with-libopus=C:\lib\libopus --with-python=C:/Python27
 if ERRORLEVEL 1 exit /b 1
 
 call env.bat
@@ -30,16 +37,7 @@ REM Commands for verbose output
 REM kmk --pretty-command-printing --jobs=1
 REM kmk --debug=vjm KBUILD_TYPE=debug
 kmk
-kmk additions-build
-kmk additions-packing
-if ERRORLEVEL 1 exit /b 1
 
-kmk additions-packing
 if ERRORLEVEL 1 exit /b 1
-
-REM Signal about build completion
-for /L %i in (1,1,3) do (
-  echo ^G
-)
 
 del /q AutoConfig.kmk configure.log env.bat

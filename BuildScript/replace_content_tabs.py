@@ -47,19 +47,6 @@ additions-build: \
 	additions-build-darwin.amd64
 	
 endif'''
-	),
-
-		ReplacePair(
-			old_text=r'''VBoxRT-x86_LIBS.win                = \
-	$(PATH_SDK_$(VBOX_WINDDK)_LIB.x86)/vccomsup.lib \
-	$(PATH_SDK_$(VBOX_WINDDK)_LIB.x86)/wbemuuid.lib \
-	$(PATH_TOOL_$(VBOX_VCC_TOOL_STEM)X86_LIB)/delayimp.lib''',
-			new_text=r'''VBoxRT-x86_LIBS.win                = \
-	$(PATH_SDK_$(VBOX_WINDDK)_LIB.x86)/vccomsup.lib \
-	$(PATH_SDK_$(VBOX_WINDDK)_LIB.x86)/wbemuuid.lib \
-	$(PATH_TOOL_$(VBOX_VCC_TOOL_STEM)X86_LIB)/delayimp.lib \
-	$(PATH_SDK_$(VBOX_WINPSDK)_LIB.x86)/crypt32.lib \
-	$(PATH_SDK_$(VBOX_WINPSDK)_LIB.x86)/bcrypt.lib'''
 		)
 	],
 

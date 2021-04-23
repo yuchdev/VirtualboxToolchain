@@ -42,7 +42,7 @@ echo call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.Cmd" /Release
 echo echo ### %VERSION%: BUILDING x32 VERSION ###>> build-tmp.cmd
 echo echo.>> build-tmp.cmd
 echo set BUILD_TARGET_ARCH=x86>> build-tmp.cmd
-echo cscript configure.vbs --with-DDK=C:\WinDDK\7600.16385.1 --with-MinGW-w64=C:\lib\mingw\mingw64 --with-MinGW32=C:\lib\mingw\mingw32 --with-libSDL=C:\lib\SDL\x64\SDL-1.2.15 --with-openssl=C:\lib\OpenSSL\x64 --with-openssl32=C:\lib\OpenSSL\x32 --with-libcurl=C:\lib\curl\x64 --with-libcurl32=C:\lib\curl\x86 --with-Qt5=C:\Qt\5.6.3\x64\msvc2010 --with-libvpx=C:\lib\libvpx --with-libopus=C:\lib\libopus --with-python=C:/Python27 >> build-tmp.cmd
+echo cscript configure.vbs --with-vc="C:\MSVS\10.0\VC" --with-DDK=C:\WinDDK\7600.16385.1 --with-w32api=c:\lib\mingw\mingw32 --with-MinGW-w64=C:\lib\mingw\mingw64 --with-MinGW32=C:\lib\mingw\mingw32 --with-libSDL=C:\lib\SDL\x86\SDL-1.2.15 --with-openssl=C:\lib\OpenSSL\x32 --with-libcurl=C:\lib\curl\x86 --with-Qt5=C:\Qt\5.6.3\msvc2010 --with-libvpx=C:\lib\libvpx --with-libopus=C:\lib\libopus --with-python=C:/Python27 >> build-tmp.cmd
 echo if ERRORLEVEL 1 exit /b ^1>> build-tmp.cmd
 echo call env.bat>> build-tmp.cmd
 echo kmk >> build-tmp.cmd
