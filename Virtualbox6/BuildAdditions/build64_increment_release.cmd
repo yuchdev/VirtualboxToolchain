@@ -30,8 +30,9 @@ REM Commands for verbose output
 REM kmk --pretty-command-printing --jobs=1
 REM kmk --debug=vjm KBUILD_TYPE=debug
 kmk
+if ERRORLEVEL 1 exit /b 1
+
 kmk additions-build
-kmk additions-packing
 if ERRORLEVEL 1 exit /b 1
 
 kmk additions-packing
