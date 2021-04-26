@@ -34,10 +34,11 @@ if ERRORLEVEL 1 exit /b 1
 
 cd .\out\win.amd64\debug\bin\
 
+del /q AutoConfig.kmk configure.log env.bat 2>nul
+
 call comregister.cmd
 if ERRORLEVEL 1 exit /b 1
 
 call loadall.cmd
 if ERRORLEVEL 1 exit /b 1
 
-del /q AutoConfig.kmk configure.log env.bat 2>nul

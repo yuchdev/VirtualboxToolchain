@@ -33,6 +33,8 @@ REM kmk --debug=vjm KBUILD_TYPE=debug
 kmk
 if ERRORLEVEL 1 exit /b 1
 
+del /q AutoConfig.kmk configure.log env.bat 2>nul
+
 cd .\out\win.amd64\release\bin\
 
 call comregister.cmd
